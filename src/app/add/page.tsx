@@ -22,6 +22,7 @@ export default function Home() {
   const [numdes, setNumdes] = useState(0);
   useEffect(() => {
     getVarities();
+    getFeature();
   }, []);
 
   interface Description {
@@ -37,9 +38,17 @@ export default function Home() {
   }
   
   const getVarities = () => {
-    axios.get("https://cmdkpp.com/API/api_select_features.php").then((res) => {
+    axios.get("https://cmdkpp.com/API/api_select_varities.php").then((res) => {
       setVaities(res.data);
       console.log(res.data);
+    });
+  };
+
+  const getFeature = () => {
+    axios.get("https://cmdkpp.com/API/api_select_features.php").then((res) => {
+      setDescription(res.data);
+      console.log(res.data);
+      
     });
   };
   const addData = () => {
