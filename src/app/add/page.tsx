@@ -51,24 +51,16 @@ export default function Home() {
     });
   };
   const addData = () => {
-    console.log(
-      Feature1,
-      Feature2,
-      Feature3,
-      Feature4,
-      Feature5,
-      Feature6,
-      selectedVarity
-    );
+    console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
     axios
       .post("https://cmdkpp.com/API/api_add_maping.php", {
-        Feature1: 5,
-        Feature2: 5,
-        Feature3: 5,
-        Feature4: 5,
-        Feature5: 5,
-        Feature6: 5,
-        selectedVarity: 5,
+        Feature1: Feature1,
+        Feature2: Feature2,
+        Feature3: Feature3,
+        Feature4: Feature4,
+        Feature5: Feature5,
+        Feature6: Feature6,
+        selectedVarity: selectedVarity,
       })
       .then((res) => {
         console.log('Response status:', res.status);
@@ -79,6 +71,7 @@ export default function Home() {
         console.error(error);
       });
   };
+  
   
 
   const loop_image = () => {
