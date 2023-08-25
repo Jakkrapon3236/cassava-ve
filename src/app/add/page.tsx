@@ -55,13 +55,13 @@ export default function Home() {
     // Assuming you have defined Feature1, Feature2, ..., selectedVarity
     axios
       .post("https://cmdkpp.com/API/api_add_maping.php", {
-        Feature1: Feature1,
-        Feature2: Feature2,
-        Feature3: Feature3,
-        Feature4: Feature4,
-        Feature5: Feature5,
-        Feature6: Feature6,
-        selectedVarity: selectedVarity,
+        Feature1: 5,
+        Feature2: 5,
+        Feature3: 2,
+        Feature4: 2,
+        Feature5: 1,
+        Feature6: 1,
+        selectedVarity: 4,
       })
       .then((res) => {
         console.log('Response status:', res.status);
