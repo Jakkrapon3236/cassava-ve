@@ -17,7 +17,7 @@ export default function Home() {
   const [Feature6, setFeature6] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
   const [showModal, setShowModal] = useState(false);
   const [varities, setVaities] = useState<varities[]>([]);
-   const [description, setDescription] = useState<Description[]>([]);
+  const [description, setDescription] = useState<Description[]>([]);
   const [selectedVarity, setSelectedVarity] = useState(0);
   const [numdes, setNumdes] = useState(0);
   useEffect(() => {
@@ -31,12 +31,12 @@ export default function Home() {
     Feature_Description: string;
     Feature_Path_Image: string;
   }
-  
+
   interface varities {
     Varity_ID: number;
     Varity_name: string;
   }
-  
+
   const getVarities = () => {
     axios.get("https://cmdkpp.com/API/api_select_varities.php").then((res) => {
       setVaities(res.data);
@@ -48,22 +48,22 @@ export default function Home() {
     axios.get("https://cmdkpp.com/API/api_select_features.php").then((res) => {
       setDescription(res.data);
       console.log(res.data);
-      
     });
   };
   const addData = () => {
     // Assuming you have defined Feature1, Feature2, ..., selectedVarity
     axios
       .post("https://cmdkpp.com/API/api_add_maping.php", {
-        Feature1: Feature1,
-        Feature2: Feature2,
-        Feature3: Feature3,
-        Feature4: Feature4,
-        Feature5: Feature5,
-        Feature6: Feature6,
-        selectedVarity: selectedVarity,
+        Feature1: String(Feature1),
+        Feature2: String(Feature2),
+        Feature3: String(Feature3),
+        Feature4: String(Feature4),
+        Feature5: String(Feature5),
+        Feature6: String(Feature6),
+        selectedVarity: String(selectedVarity),
       })
       .then((res) => {
+        console.log('Response status:', res.status);
         setShowModal(false);
         console.log(res.data);
       })
@@ -72,7 +72,6 @@ export default function Home() {
       });
   };
 
- 
   const loop_image = () => {
     const items = [];
     for (let i = 0; i < 18; i++) {
@@ -111,7 +110,7 @@ export default function Home() {
               />
             </div>
             {description.length > 0 ? (
-              <p>{description[i+numdes].Feature_Description}</p>
+              <p>{description[i + numdes].Feature_Description}</p>
             ) : (
               <p>Loading...</p>
             )}
@@ -300,13 +299,12 @@ export default function Home() {
               type="button"
               className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={() => {
-               
                 if (ind == 6) {
                   setInd(6);
                   setShowModal(true);
-                }else{
+                } else {
                   setInd(ind + 1), console.log(ind);
-                setNumdes(numdes + 18);
+                  setNumdes(numdes + 18);
                 }
               }}
               disabled={ind > 6 ? true : false}
@@ -377,28 +375,29 @@ export default function Home() {
                       </div>
                     );
                   }
-                 
 
                   return jsxElements;
                 })()}
 
                 {
                   <div key={1} className="relative p-6 flex-auto">
-                  {varities.map((variety) => (
-                    <div key={variety.Varity_ID}>
-                      <input
-                        type="radio"
-                        id={`radio_${variety.Varity_ID}`}
-                        name="vehicle1"
-                        value={variety.Varity_ID}
-                        onChange= {(e) => setSelectedVarity(parseInt(e.target.value))}
-                      />
-                      <label htmlFor={`radio_${variety.Varity_ID}`}>
-                        {variety.Varity_name}
-                      </label>
-                    </div>
-                  ))}
-                </div>
+                    {varities.map((variety) => (
+                      <div key={variety.Varity_ID}>
+                        <input
+                          type="radio"
+                          id={`radio_${variety.Varity_ID}`}
+                          name="vehicle1"
+                          value={variety.Varity_ID}
+                          onChange={(e) =>
+                            setSelectedVarity(parseInt(e.target.value))
+                          }
+                        />
+                        <label htmlFor={`radio_${variety.Varity_ID}`}>
+                          {variety.Varity_name}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
                 }
 
                 {/*footer*/}
@@ -417,8 +416,15 @@ export default function Home() {
                     type="button"
                     onClick={() => {
                       addData();
-                      console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
-                      
+                      console.log(
+                        Feature1,
+                        Feature2,
+                        Feature3,
+                        Feature4,
+                        Feature5,
+                        Feature6,
+                        selectedVarity
+                      );
                     }}
                   >
                     Save Changes
