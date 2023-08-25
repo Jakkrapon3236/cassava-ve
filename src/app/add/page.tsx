@@ -51,16 +51,17 @@ export default function Home() {
     });
   };
   const addData = () => {
+    console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6,selectedVarity);
     // Assuming you have defined Feature1, Feature2, ..., selectedVarity
     axios
       .post("https://cmdkpp.com/API/api_add_maping.php", {
-        Feature1: String(Feature1),
-        Feature2: String(Feature2),
-        Feature3: String(Feature3),
-        Feature4: String(Feature4),
-        Feature5: String(Feature5),
-        Feature6: String(Feature6),
-        selectedVarity: String(selectedVarity),
+        Feature1: Feature1,
+        Feature2: Feature2,
+        Feature3: Feature3,
+        Feature4: Feature4,
+        Feature5: Feature5,
+        Feature6: Feature6,
+        selectedVarity: selectedVarity,
       })
       .then((res) => {
         console.log('Response status:', res.status);
