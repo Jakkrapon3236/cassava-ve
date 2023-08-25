@@ -17,25 +17,33 @@ export default function Home() {
   const [Feature6, setFeature6] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
   const [showModal, setShowModal] = useState(false);
   const [varities, setVaities] = useState<varities[]>([]);
+   const [description, setDescription] = useState<Description[]>([]);
   const [selectedVarity, setSelectedVarity] = useState(0);
-
+  const [numdes, setNumdes] = useState(0);
   useEffect(() => {
     getVarities();
   }, []);
 
+  interface Description {
+    Feature_ID: String;
+    Type_ID: number;
+    Feature_Description: string;
+    Feature_Path_Image: string;
+  }
+  
   interface varities {
     Varity_ID: number;
     Varity_name: string;
   }
   const getVarities = () => {
-    axios.get("http://localhost/PHP_API/api_select_features.php").then((res) => {
+    axios.get("https://cmdkpp.com/API/api_select_features.php").then((res) => {
       setVaities(res.data);
       console.log(res.data);
     });
   };
   const addData = () => {
     axios
-      .post("http://localhost/PHP_API/api_add_maping.php", {
+      .post("https://cmdkpp.com/API/api_add_maping.php", {
         Feature1: Feature1,
         Feature2: Feature2,
         Feature3: Feature3,
@@ -88,6 +96,11 @@ export default function Home() {
                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               />
             </div>
+            {description.length > 0 ? (
+              <p>{description[i+numdes].Feature_Description}</p>
+            ) : (
+              <p>Loading...</p>
+            )}
           </div>
         </div>
       );
@@ -108,6 +121,7 @@ export default function Home() {
               }`}
               onClick={() => {
                 setInd(ind - 1);
+                setNumdes(numdes - 18);
               }}
               disabled={ind <= 1 ? true : false}
             >
@@ -272,10 +286,13 @@ export default function Home() {
               type="button"
               className="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={() => {
-                setInd(ind + 1), console.log(ind);
+               
                 if (ind == 6) {
                   setInd(6);
                   setShowModal(true);
+                }else{
+                  setInd(ind + 1), console.log(ind);
+                setNumdes(numdes + 18);
                 }
               }}
               disabled={ind > 6 ? true : false}

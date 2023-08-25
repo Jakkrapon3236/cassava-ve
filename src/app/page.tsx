@@ -26,14 +26,14 @@ export default function Home() {
     getFeature();
   }, []);
   const getVarities = () => {
-    axios.get("http://localhost:8080/api/varities").then((res) => {
+    axios.get("https://cmdkpp.com/API/api_select_varities.php").then((res) => {
       setVarities(res.data);
       console.log(res.data);
     });
   };
 
   const getFeature = () => {
-    axios.get("http://localhost:8080/api/features").then((res) => {
+    axios.get("https://cmdkpp.com/API/api_select_features.php").then((res) => {
       setDescription(res.data);
       console.log(res.data);
       
@@ -189,7 +189,8 @@ export default function Home() {
                 ind <= 1 ? "bg-gray-300 text-gray-500 cursor-not-allowed" : ""
               }`}
               onClick={() => {
-                setInd(ind - 1);
+                setInd(ind - 1),
+                setNumdes(numdes - 18);
               }}
               disabled={ind <= 1 ? true : false}
             >
@@ -359,6 +360,7 @@ export default function Home() {
                   setInd(6);
                   result_feature();
                   setShowModal(true);
+                  setNumdes(0);
                 }else{
                   setInd(ind + 1), console.log(ind);
                 setNumdes(numdes + 18);
