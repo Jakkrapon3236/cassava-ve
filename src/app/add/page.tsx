@@ -9,16 +9,16 @@ export default function Home() {
   const [selected, setSelected] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
   const [ind, setInd] = useState(1); // ตัวแปรเก็บค่ารูปที่เลือก
   const title = ["Leaf-buds", "Leaflet color", "Stipule features"];
-  const [Feature1, setFeature1] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
-  const [Feature2, setFeature2] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
-  const [Feature3, setFeature3] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
-  const [Feature4, setFeature4] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
-  const [Feature5, setFeature5] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
-  const [Feature6, setFeature6] = useState(0); // ตัวแปรเก็บค่ารูปที่เลือก
+  const [Feature1, setFeature1] = useState(5); // ตัวแปรเก็บค่ารูปที่เลือก
+  const [Feature2, setFeature2] = useState(5); // ตัวแปรเก็บค่ารูปที่เลือก
+  const [Feature3, setFeature3] = useState(5); // ตัวแปรเก็บค่ารูปที่เลือก
+  const [Feature4, setFeature4] = useState(5); // ตัวแปรเก็บค่ารูปที่เลือก
+  const [Feature5, setFeature5] = useState(5); // ตัวแปรเก็บค่ารูปที่เลือก
+  const [Feature6, setFeature6] = useState(5); // ตัวแปรเก็บค่ารูปที่เลือก
   const [showModal, setShowModal] = useState(false);
   const [varities, setVaities] = useState<varities[]>([]);
   const [description, setDescription] = useState<Description[]>([]);
-  const [selectedVarity, setSelectedVarity] = useState(0);
+  const [selectedVarity, setSelectedVarity] = useState(6);
   const [numdes, setNumdes] = useState(0);
   useEffect(() => {
     getVarities();
@@ -417,15 +417,7 @@ export default function Home() {
                     type="button"
                     onClick={() => {
                       addData();
-                      console.log(
-                        Feature1,
-                        Feature2,
-                        Feature3,
-                        Feature4,
-                        Feature5,
-                        Feature6,
-                        selectedVarity
-                      );
+                  
                     }}
                   >
                     Save Changes
