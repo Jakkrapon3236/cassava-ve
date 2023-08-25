@@ -56,11 +56,11 @@ export default function Home() {
     axios
       .post("https://cmdkpp.com/API/api_add_maping.php", {
         Feature1: 5,
-        Feature2: 5,
-        Feature3: 2,
-        Feature4: 2,
-        Feature5: 1,
-        Feature6: 1,
+        Feature2: Feature2,
+        Feature3: Feature3,
+        Feature4: Feature4,
+        Feature5: Feature5,
+        Feature6: Feature6,
         selectedVarity: selectedVarity,
       })
       .then((res) => {
