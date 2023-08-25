@@ -51,11 +51,11 @@ export default function Home() {
     });
   };
   const addData = () => {
-    console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6,selectedVarity);
+    console.log(typeof Feature1,typeof Feature2,typeof Feature3,typeof Feature4,typeof Feature5,typeof Feature6,typeof selectedVarity);
     // Assuming you have defined Feature1, Feature2, ..., selectedVarity
     axios
       .post("https://cmdkpp.com/API/api_add_maping.php", {
-        Feature1: 5,
+        Feature1: Feature1,
         Feature2: Feature2,
         Feature3: Feature3,
         Feature4: Feature4,
