@@ -28,14 +28,14 @@ export default function Home() {
     Varity_name: string;
   }
   const getVarities = () => {
-    axios.get("http://localhost:8080/api/varities").then((res) => {
+    axios.get("http://localhost/PHP_API/api_select_features.php").then((res) => {
       setVaities(res.data);
       console.log(res.data);
     });
   };
   const addData = () => {
     axios
-      .post("http://localhost:8080/api/add", {
+      .post("http://localhost/PHP_API/api_add_maping.php", {
         Feature1: Feature1,
         Feature2: Feature2,
         Feature3: Feature3,
