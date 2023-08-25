@@ -52,6 +52,7 @@ export default function Home() {
     });
   };
   const addData = () => {
+    // Assuming you have defined Feature1, Feature2, ..., selectedVarity
     axios
       .post("https://cmdkpp.com/API/api_add_maping.php", {
         Feature1: Feature1,
@@ -60,12 +61,14 @@ export default function Home() {
         Feature4: Feature4,
         Feature5: Feature5,
         Feature6: Feature6,
-        selectedVarity:selectedVarity,
+        selectedVarity: selectedVarity,
       })
       .then((res) => {
         setShowModal(false);
-        
         console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
