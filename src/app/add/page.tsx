@@ -64,7 +64,7 @@ export default function Home() {
       })
       .then((res) => {
         setShowModal(false);
-        console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
+        
         console.log(res.data);
       });
   };
@@ -414,6 +414,7 @@ export default function Home() {
                     type="button"
                     onClick={() => {
                       addData();
+                      console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
                       
                     }}
                   >
