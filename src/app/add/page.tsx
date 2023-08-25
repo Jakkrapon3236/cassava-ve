@@ -61,7 +61,7 @@ export default function Home() {
         Feature4: 2,
         Feature5: 1,
         Feature6: 1,
-        selectedVarity: 4,
+        selectedVarity: selectedVarity,
       })
       .then((res) => {
         console.log('Response status:', res.status);
