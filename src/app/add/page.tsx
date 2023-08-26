@@ -66,11 +66,20 @@ export default function Home() {
         console.log('Response status:', res.status);
         setShowModal(false);
         console.log(res.data.error);
+  
+        // แสดงผลลัพธ์จาก API บนหน้าเว็บ
+        // ตัวอย่างเช่น
+        alert(res.data.message); // แสดงข้อความจาก API ในรูปแบบ Alert
       })
       .catch((error) => {
         console.error(error);
+  
+        // แสดงข้อผิดพลาดบนหน้าเว็บ
+        // ตัวอย่างเช่น
+        alert('An error occurred while adding data.'); // แสดงข้อความแจ้งเตือนหากเกิดข้อผิดพลาด
       });
   };
+  
   
   
 
