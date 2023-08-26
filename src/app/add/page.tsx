@@ -73,8 +73,7 @@ export default function Home() {
         // แสดงผลลัพธ์จาก API บนหน้าเว็บ
         // ตัวอย่างเช่น
         alert(res.data.message); // แสดงข้อความจาก API ในรูปแบบ Alert
-        alert(`Feature1: ${Feature1}\nFeature2: ${Feature2}\nFeature3: ${Feature3}\nFeature4: ${Feature4}\nFeature5: ${Feature5}\nFeature6: ${Feature6}\nselectedVarity: ${selectedVarity}`);
-
+        
       })
       .catch((error) => {
         console.error(error);
