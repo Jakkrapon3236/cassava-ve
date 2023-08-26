@@ -54,8 +54,7 @@ export default function Home() {
     console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
   
     // แสดงค่าที่ถูกส่งไปในร้องขอ POST ในรูปแบบ alert
-    alert(`Feature1: ${Feature1}\nFeature2: ${Feature2}\nFeature3: ${Feature3}\nFeature4: ${Feature4}\nFeature5: ${Feature5}\nFeature6: ${Feature6}\nselectedVarity: ${selectedVarity}`);
-  
+      
     axios
       .post("https://cmdkpp.com/API/api_add_maping.php", {
         Feature1: Feature1,
@@ -70,6 +69,7 @@ export default function Home() {
         console.log('Response status:', res.status);
         setShowModal(false);
         console.log(res.data.error);
+        alert(`Feature1: ${Feature1}\nFeature2: ${Feature2}\nFeature3: ${Feature3}\nFeature4: ${Feature4}\nFeature5: ${Feature5}\nFeature6: ${Feature6}\nselectedVarity: ${selectedVarity}`);
 
         // แสดงผลลัพธ์จาก API บนหน้าเว็บ
         // ตัวอย่างเช่น
