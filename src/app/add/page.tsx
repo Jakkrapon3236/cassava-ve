@@ -65,7 +65,7 @@ export default function Home() {
       .then((res) => {
         console.log('Response status:', res.status);
         setShowModal(false);
-        console.log(res.data);
+        console.log(res.data.error);
       })
       .catch((error) => {
         console.error(error);
