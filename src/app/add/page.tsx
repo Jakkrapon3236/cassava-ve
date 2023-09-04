@@ -413,6 +413,7 @@ export default function Home() {
                         </label>
                       </div>
                     ))}
+                      <input type="text" ></input>
                   </div>
                 }
 
