@@ -20,6 +20,7 @@ export default function Home() {
   const [description, setDescription] = useState<Description[]>([]);
   const [selectedVarity, setSelectedVarity] = useState(0);
   const [numdes, setNumdes] = useState(0);
+  const [formData, setFormData] = useState({});
   useEffect(() => {
     getVarities();
     getFeature();
@@ -52,11 +53,8 @@ export default function Home() {
   };
 
   const addData = () => {
-    console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
-  
-    // แสดงค่าที่ถูกส่งไปในร้องขอ POST ในรูปแบบ alert
-      
-    axios.post("https://cmdkpp.com/API/api_add_maping.php", {
+
+    setFormData({
       Feature1: Feature1,
       Feature2: Feature2,
       Feature3: Feature3,
@@ -64,25 +62,54 @@ export default function Home() {
       Feature5: Feature5,
       Feature6: Feature6,
       selectedVarity: selectedVarity,
-  })
-      .then((res) => {
-        console.log('Response status:', res.status);
-        setShowModal(false);
-        console.log(res.data.error);
-        
-        // แสดงผลลัพธ์จาก API บนหน้าเว็บ
-        // ตัวอย่างเช่น
-        alert(res.data.message); // แสดงข้อความจาก API ในรูปแบบ Alert
-        alert(`Feature1: ${Feature1}\nFeature2: ${Feature2}\nFeature3: ${Feature3}\nFeature4: ${Feature4}\nFeature5: ${Feature5}\nFeature6: ${Feature6}\nselectedVarity: ${selectedVarity}`);
 
-      })
-      .catch((error) => {
-        console.error(error);
+    })
+    console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
   
-        // แสดงข้อผิดพลาดบนหน้าเว็บ
-        // ตัวอย่างเช่น
-        alert('An error occurred while adding data.'); // แสดงข้อความแจ้งเตือนหากเกิดข้อผิดพลาด
-      });
+    // แสดงค่าที่ถูกส่งไปในร้องขอ POST ในรูปแบบ alert
+      
+  //   axios.post("https://cmdkpp.com/API/api_add_maping.php", {
+  //     Feature1: Feature1,
+  //     Feature2: Feature2,
+  //     Feature3: Feature3,
+  //     Feature4: Feature4,
+  //     Feature5: Feature5,
+  //     Feature6: Feature6,
+  //     selectedVarity: selectedVarity,
+  // })
+  //     .then((res) => {
+  //       console.log('Response status:', res.status);
+  //       setShowModal(false);
+  //       console.log(res.data.error);
+        
+  //       // แสดงผลลัพธ์จาก API บนหน้าเว็บ
+  //       // ตัวอย่างเช่น
+  //       alert(res.data.message); // แสดงข้อความจาก API ในรูปแบบ Alert
+  //       alert(`Feature1: ${Feature1}\nFeature2: ${Feature2}\nFeature3: ${Feature3}\nFeature4: ${Feature4}\nFeature5: ${Feature5}\nFeature6: ${Feature6}\nselectedVarity: ${selectedVarity}`);
+
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  
+  //       // แสดงข้อผิดพลาดบนหน้าเว็บ
+  //       // ตัวอย่างเช่น
+  //       alert('An error occurred while adding data.'); // แสดงข้อความแจ้งเตือนหากเกิดข้อผิดพลาด
+  //     });
+
+  sendDataToAPI();
+  };
+
+  const sendDataToAPI = async () => {
+    console.log(formData);
+
+    try {
+      const response = await axios.post("https://cmdkpp.com/API/api_add_maping.php", formData);
+      console.log('Response status:', response.status);
+      alert(response.data.message);
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred while adding data.');
+    }
   };
   
   
