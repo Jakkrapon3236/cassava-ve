@@ -54,24 +54,27 @@ export default function Home() {
   const addData = () => {
     console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
   
+    // แสดงค่าที่ถูกส่งไปในร้องขอ POST ในรูปแบบ alert
+      
     axios.post("https://cmdkpp.com/API/api_add_maping.php", {
-      Feature1: selected === 1 ? Feature1 : 0,
-      Feature2: selected === 2 ? Feature2 : 0,
-      Feature3: selected === 3 ? Feature3 : 0,
-      Feature4: selected === 4 ? Feature4 : 0,
-      Feature5: selected === 5 ? Feature5 : 0,
-      Feature6: selected === 6 ? Feature6 : 0,
+      Feature1: Feature1,
+      Feature2: Feature2,
+      Feature3: Feature3,
+      Feature4: Feature4,
+      Feature5: Feature5,
+      Feature6: Feature6,
       selectedVarity: selectedVarity,
-    })
+  })
       .then((res) => {
         console.log('Response status:', res.status);
         setShowModal(false);
         console.log(res.data.error);
-  
+        
         // แสดงผลลัพธ์จาก API บนหน้าเว็บ
         // ตัวอย่างเช่น
         alert(res.data.message); // แสดงข้อความจาก API ในรูปแบบ Alert
         alert(`Feature1: ${Feature1}\nFeature2: ${Feature2}\nFeature3: ${Feature3}\nFeature4: ${Feature4}\nFeature5: ${Feature5}\nFeature6: ${Feature6}\nselectedVarity: ${selectedVarity}`);
+
       })
       .catch((error) => {
         console.error(error);
@@ -426,7 +429,7 @@ export default function Home() {
                   </button>
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="submit"
+                    type="submit" formAction={`https://cmdkpp.com/API/api_add_maping.php`}
                     onClick={() => {
                       addData();
                   
