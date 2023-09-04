@@ -378,8 +378,10 @@ export default function Home() {
 
                     console.log(textimg);
                     jsxElements.push(
+                      
                       <div key={i} className="relative p-6">
                         {/* ตัวอย่าง JSX ภายในลูป */}
+                        <input type="text" ></input>
                         <p>Iteration: {i}</p>
                         <Image
                           src={`/image/Feature${i}_${textimg}.png`} // ตรวจสอบว่า URL ถูกต้องตามโครงสร้างโฟลเดอร์ของโปรเจค
@@ -413,7 +415,7 @@ export default function Home() {
                         </label>
                       </div>
                     ))}
-                      <input type="text" ></input>
+                      
                   </div>
                 }
 
