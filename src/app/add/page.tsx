@@ -57,7 +57,7 @@ export default function Home() {
     // แสดงค่าที่ถูกส่งไปในร้องขอ POST ในรูปแบบ alert
       
     axios.post("https://cmdkpp.com/API/api_add_maping.php", {
-        Feature1: Feature1,
+        Feature1: 12,
         Feature2: Feature2,
         Feature3: Feature3,
         Feature4: Feature4,
