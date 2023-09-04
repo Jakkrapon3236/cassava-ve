@@ -57,14 +57,14 @@ export default function Home() {
     // แสดงค่าที่ถูกส่งไปในร้องขอ POST ในรูปแบบ alert
       
     axios.post("https://cmdkpp.com/API/api_add_maping.php", {
-        Feature1: 12,
-        Feature2: Feature2,
-        Feature3: Feature3,
-        Feature4: Feature4,
-        Feature5: Feature5,
-        Feature6: Feature6,
-        selectedVarity: selectedVarity,
-      })
+      Feature1: Feature1,
+      Feature2: Feature2,
+      Feature3: Feature3,
+      Feature4: Feature4,
+      Feature5: Feature5,
+      Feature6: Feature6,
+      selectedVarity: selectedVarity,
+  })
       .then((res) => {
         console.log('Response status:', res.status);
         setShowModal(false);
