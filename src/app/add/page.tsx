@@ -367,17 +367,17 @@ export default function Home() {
                   for (let i = 1; i < 7; i++) {
                     let textimg = 0;
                     if (i == 1) {
-                      textimg = Feature1;
+                      textimg = parseInt(formData.ft1);
                     } else if (i == 2) {
-                      textimg = Feature2;
+                      textimg = parseInt(formData.ft2);
                     } else if (i == 3) {
-                      textimg = Feature3;
+                      textimg = parseInt(formData.ft3);
                     } else if (i == 4) {
-                      textimg = Feature4;
+                      textimg = parseInt(formData.ft4);
                     } else if (i == 5) {
-                      textimg = Feature5;
+                      textimg = parseInt(formData.ft5);
                     } else if (i == 6) {
-                      textimg = Feature6;
+                      textimg = parseInt(formData.ft6);
                     }
 
                     console.log(textimg);
