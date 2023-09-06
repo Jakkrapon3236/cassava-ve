@@ -53,8 +53,9 @@ export default function Home() {
   }
 
   const findVarietyById = (id: number) => {
-    const variety = varities.find((item) => item.Varity_ID === id);
-    return variety ? variety.Varity_name : "Variety not found";
+    console.log(id);
+    console.log(varities[id].Varity_name);
+    return varities[id].Varity_name;
   };
 
   const loop_image = () => {
@@ -401,7 +402,7 @@ export default function Home() {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    {findVarietyById(result)}
+                  <p>{findVarietyById(result)}</p>
                   </p>
                 </div>
                 {/*footer*/}
@@ -410,7 +411,7 @@ export default function Home() {
                     className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => {
-                      setShowModal(false), setInd(1);
+                      setShowModal(false), setInd(1) , setNumdes(0);
                     }}
                   >
                     Close

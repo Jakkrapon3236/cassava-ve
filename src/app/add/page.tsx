@@ -79,6 +79,8 @@ export default function Home() {
         if (contentType && contentType.includes("application/json")) {
           const data = await response.json();
           console.log(data.message);
+          setInd(1);
+          setNumdes(0);
           setShowModal(false);
         } else {
           console.error("Response is not JSON");
