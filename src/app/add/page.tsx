@@ -20,7 +20,15 @@ export default function Home() {
   const [description, setDescription] = useState<Description[]>([]);
   const [selectedVarity, setSelectedVarity] = useState(0);
   const [numdes, setNumdes] = useState(0);
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    ft1: "",
+    ft2: "",
+    ft3: "",
+    ft4: "",
+    ft5: "",
+    ft6: "",
+    sv: "",
+  });
   useEffect(() => {
     getVarities();
     getFeature();
@@ -52,68 +60,46 @@ export default function Home() {
     });
   };
 
-  const addData = () => {
+  const addData = async () => {
+    // Set the form data using setFormData
 
-    setFormData({
-      Feature1: Feature1,
-      Feature2: Feature2,
-      Feature3: Feature3,
-      Feature4: Feature4,
-      Feature5: Feature5,
-      Feature6: Feature6,
-      selectedVarity: selectedVarity,
-
-    })
-    console.log(Feature1, Feature2, Feature3, Feature4, Feature5, Feature6, selectedVarity);
-  
-    // แสดงค่าที่ถูกส่งไปในร้องขอ POST ในรูปแบบ alert
-      
-  //   axios.post("https://cmdkpp.com/API/api_add_maping.php", {
-  //     Feature1: Feature1,
-  //     Feature2: Feature2,
-  //     Feature3: Feature3,
-  //     Feature4: Feature4,
-  //     Feature5: Feature5,
-  //     Feature6: Feature6,
-  //     selectedVarity: selectedVarity,
-  // })
-  //     .then((res) => {
-  //       console.log('Response status:', res.status);
-  //       setShowModal(false);
-  //       console.log(res.data.error);
-        
-  //       // แสดงผลลัพธ์จาก API บนหน้าเว็บ
-  //       // ตัวอย่างเช่น
-  //       alert(res.data.message); // แสดงข้อความจาก API ในรูปแบบ Alert
-  //       alert(`Feature1: ${Feature1}\nFeature2: ${Feature2}\nFeature3: ${Feature3}\nFeature4: ${Feature4}\nFeature5: ${Feature5}\nFeature6: ${Feature6}\nselectedVarity: ${selectedVarity}`);
-
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  
-  //       // แสดงข้อผิดพลาดบนหน้าเว็บ
-  //       // ตัวอย่างเช่น
-  //       alert('An error occurred while adding data.'); // แสดงข้อความแจ้งเตือนหากเกิดข้อผิดพลาด
-  //     });
-
-  sendDataToAPI();
-  };
-
-  const sendDataToAPI = async () => {
-    console.log(formData);
+    const url = "https://cmdkpp.com/API//api_add_maping.php"; // Replace with your PHP API URL
 
     try {
-      const response = await axios.post("https://cmdkpp.com/API/api_add_maping.php", formData);
-      console.log('Response status:', response.status);
-      alert(response.data.message);
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (response.ok) {
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          const data = await response.json();
+          console.log(data.message);
+          setShowModal(false);
+        } else {
+          console.error("Response is not JSON");
+          alert("An error occurred while adding data.");
+        }
+      } else {
+        console.error("Failed to insert values");
+        alert("An error occurred while adding data.");
+      }
     } catch (error) {
-      console.error(error);
-      alert('An error occurred while adding data.');
+      console.error("An error occurred:", error);
+      alert("An error occurred while adding data.");
     }
   };
-  
-  
-  
+
+  const handleChange = (name: string, value: number) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const loop_image = () => {
     const items = [];
@@ -129,28 +115,17 @@ export default function Home() {
               height={100}
             />
             <div className="flex justify-center p-6 items-center mb-4">
-              <input
-                id="default-radio-${ind}"
-                type="radio"
-                value="${i+1}"
-                name="default-radio"
-                onClick={() => {
-                  if (ind == 1) {
-                    setFeature1(i + 1);
-                  } else if (ind == 2) {
-                    setFeature2(i + 1);
-                  } else if (ind == 3) {
-                    setFeature3(i + 1);
-                  } else if (ind == 4) {
-                    setFeature4(i + 1);
-                  } else if (ind == 5) {
-                    setFeature5(i + 1);
-                  } else if (ind == 6) {
-                    setFeature6(i + 1);
-                  }
-                }}
-                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-              />
+              <label htmlFor={`default-radio-${ind}`}>
+                <input
+                  id={`default-radio-${ind}`}
+                  type="radio"
+                  value={`${i + 1}`}
+                  name={`ft${ind}`}
+                  onClick={() => handleChange(`ft${ind}`, parseInt(`${i + 1}`))}
+                  className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                />
+                Radio Button Label
+              </label>
             </div>
             {description.length > 0 ? (
               <p>{description[i + numdes].Feature_Description}</p>
@@ -405,10 +380,9 @@ export default function Home() {
 
                     console.log(textimg);
                     jsxElements.push(
-                      
                       <div key={i} className="relative p-6">
                         {/* ตัวอย่าง JSX ภายในลูป */}
-                        
+
                         <p>Iteration: {i}</p>
                         <Image
                           src={`/image/Feature${i}_${textimg}.png`} // ตรวจสอบว่า URL ถูกต้องตามโครงสร้างโฟลเดอร์ของโปรเจค
@@ -431,10 +405,10 @@ export default function Home() {
                         <input
                           type="radio"
                           id={`radio_${variety.Varity_ID}`}
-                          name="vehicle1"
+                          name="sv"
                           value={variety.Varity_ID}
-                          onChange={(e) =>
-                            setSelectedVarity(parseInt(e.target.value))
+                          onChange={() =>
+                            handleChange("sv", variety.Varity_ID)
                           }
                         />
                         <label htmlFor={`radio_${variety.Varity_ID}`}>
@@ -442,7 +416,6 @@ export default function Home() {
                         </label>
                       </div>
                     ))}
-                      
                   </div>
                 }
 
@@ -459,13 +432,13 @@ export default function Home() {
                   </button>
                   <button
                     className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="submit" formAction={`https://cmdkpp.com/API/api_add_maping.php`} formMethod="post" 
+                    type="submit"
+                    formAction={`https://cmdkpp.com/API/api_add_maping.php`}
+                    formMethod="post"
                     onClick={() => {
                       addData();
-                  
                     }}
                   >
-                    
                     Save Changes
                   </button>
                 </div>
